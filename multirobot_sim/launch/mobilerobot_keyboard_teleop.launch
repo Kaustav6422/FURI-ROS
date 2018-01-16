@@ -1,0 +1,7 @@
+<launch>
+
+  <!-- Run the keyboard teleop node -->
+  <include file="$(find multirobot_sim)/launch/includes/keyboard_teleop.launch.xml" />
+
+</launch>
+

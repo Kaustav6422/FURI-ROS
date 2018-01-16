@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- This launch file launches the move_base package -->
+
+  <arg name="odom_topic" default="odom" />
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <rosparam file="$(find multirobot_sim)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find multirobot_sim)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+
+    <rosparam file="$(find multirobot_sim)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_sim)/param/global_costmap_params.yaml" command="load" />
+
+    <rosparam file="$(find multirobot_sim)/param/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_sim)/param/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find multirobot_sim)/param/move_base_params.yaml" command="load" />
+
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" /> <!-- added from clearpath robotics website -->
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/> <!-- added from clearpath robotics website -->
+
+  </node>
+
+</launch>

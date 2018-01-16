@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+
+<launch>
+
+<!-- AMCL+GMAPPING+MOVE_BASE(GOAL) Everything works  :)  !! -->
+   
+  <!-- Run robot model -->
+  <include file="$(find multirobot_sim)/launch/mobilerobot_world.launch" />
+
+  <!-- Run Gmapping package -->
+  <include file="$(find multirobot_sim)/launch/mobilerobot_gmapping.launch" /> 
+
+  <!-- Run Map server -->
+  <!-- <include file="$(find multirobot_sim)/launch/includes/mapserver.launch.xml" /> -->
+
+  <!-- Run AMCL -->
+  <include file="$(find multirobot_sim)/launch/includes/amcl.launch.xml" />  
+
+  <!-- Run move_base package -->
+  <include file="$(find multirobot_sim)/launch/mobilerobot_odom_nav_demo.launch" /> 
+  
+  <!-- Run Rviz -->  
+  <param name="use_gui" value="true" />
+  <arg name="config" default="mapping_demo" /> <!-- robot.rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find multirobot_sim)/rviz/$(arg config).rviz" />  
+
+  <!-- Run Keyboard Teleop node -->
+  <!-- While doing autonomous navigation, don't use the keyboard teleop node -->
+  <!-- <include file="$(find multirobot_sim)/launch/mobilerobot_keyboard_teleop.launch" /> -->
+
+</launch>
+
